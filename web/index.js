@@ -81,6 +81,68 @@ app.get("/api/user/get", async (req, res) => {
   }
 })
 
+app.get('/api/choco/product', async (req, res) => {
+  try {
+    const products = await shopify.api.rest.Product.all({
+      session: res.locals.shopify.session
+    })
+    res.status(200).json({ message: "Products fetched successfully", products })
+  } catch (error) {
+    console.log("ERROR: ", error)
+  }
+})
+
+app.put('/api/choco/product/:id', async (req, res) => {
+  try {
+    const id = req.params.id
+    const { title } = req.body
+    const updatedProduct = new shopify.api.rest.Product({
+      session: res.locals.shopify.session
+    })
+    updatedProduct.id = Number(id)
+    updatedProduct.title = title
+    await updatedProduct.save({ update: true })
+    res.status(200).json({ message: "Product updated successfully", updatedProduct })
+  } catch (error) {
+    console.log("ERROR: ", error)
+  }
+})
+
+app.post('/api/choco/product/', async (req, res) => {
+  try {
+    const { title } = req.body
+    const newProduct = new shopify.api.rest.Product({
+      session: res.locals.shopify.session
+    })
+    newProduct.title = title
+    await newProduct.save({ update: true })
+    res.status(200).json({ message: "Product Created Successfully", newProduct })
+  } catch (error) {
+    console.log("ERROR: ", error)
+  }
+})
+
+app.delete('/api/choco/product/:id', async (req, res) => {
+  try {
+    const id = Number(req.params.id)
+    await shopify.api.rest.Product.delete({
+      session: res.locals.shopify.session,
+      id
+    })
+    res.status(200).json({ message: "Product Deleted Successfully" })
+  } catch (error) {
+    console.log("ERROR: ", error)
+  }
+})
+
+
+
+
+
+
+
+
+
 app.get("/api/store/info", async (req, res) => {
   try {
     const storeInfo = await shopify.api.rest.Shop.all({

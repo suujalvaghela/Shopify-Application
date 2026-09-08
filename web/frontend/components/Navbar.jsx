@@ -20,7 +20,7 @@ export function Navbar() {
                 <li title="Chat"><NavLink to="/chat" className={({ isActive }) => isActive ? 'active' : ''}><ChatIcon /></NavLink></li>
                 <li title="Info"><NavLink to="/info" className={({ isActive }) => isActive ? 'active' : ''}><InfoIcon /></NavLink></li>
                 <li title="Bar Chart"><NavLink to="/bar-chart" className={({ isActive }) => isActive ? 'active' : ''}><BarChartIcon /></NavLink></li>
-                <li title="Auto Graph"><NavLink to="/auto-graph" className={({ isActive }) => isActive ? 'active' : ''}><AutoGraphIcon /></NavLink></li>
+                <li title="Product"><NavLink to="/products" className={({ isActive }) => isActive ? 'active' : ''}><AutoGraphIcon /></NavLink></li>
                 <li title="Users"><NavLink to="/users" className={({ isActive }) => isActive ? 'active' : ''}><GroupIcon /></NavLink></li>
                 <li title="Settings"><NavLink to="/settings" className={({ isActive }) => isActive ? 'active' : ''}><SettingsIcon /></NavLink></li>
             </ul>
